@@ -1,0 +1,23 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\NW\Desktop\Portfolio\Whatsapp_agent\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\NW\Desktop\Portfolio\Whatsapp_agent
+configfile: pyproject.toml
+plugins: anyio-4.13.0
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+___________________ ERROR collecting tests/test_webhook.py ____________________
+ImportError while importing test module 'C:\Users\NW\Desktop\Portfolio\Whatsapp_agent\tests\test_webhook.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+..\..\..\AppData\Roaming\uv\python\cpython-3.13.5-windows-x86_64-none\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_webhook.py:6: in <module>
+    from app.api.webhook import router
+E   ModuleNotFoundError: No module named 'app'
+=========================== short test summary info ===========================
+ERROR tests/test_webhook.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.48s ===============================

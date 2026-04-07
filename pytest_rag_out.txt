@@ -1,0 +1,66 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\NW\Desktop\Portfolio\Whatsapp_agent\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\NW\Desktop\Portfolio\Whatsapp_agent
+configfile: pyproject.toml
+plugins: anyio-4.13.0
+collecting ... collected 5 items
+
+tests/test_rag.py::test_initialize_knowledge_success PASSED              [ 20%]
+tests/test_rag.py::test_initialize_knowledge_failure PASSED              [ 40%]
+tests/test_rag.py::test_query_rag_success FAILED                         [ 60%]
+tests/test_rag.py::test_query_rag_empty_content FAILED                   [ 80%]
+tests/test_rag.py::test_query_rag_exception FAILED                       [100%]
+
+================================== FAILURES ===================================
+___________________________ test_query_rag_success ____________________________
+async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted
+________________________ test_query_rag_empty_content _________________________
+async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted
+__________________________ test_query_rag_exception ___________________________
+async def functions are not natively supported.
+You need to install a suitable plugin for your async framework, for example:
+  - anyio
+  - pytest-asyncio
+  - pytest-tornasync
+  - pytest-trio
+  - pytest-twisted
+============================== warnings summary ===============================
+.venv\Lib\site-packages\chromadb\utils\embedding_functions\openai_embedding_function.py:54
+  C:\Users\NW\Desktop\Portfolio\Whatsapp_agent\.venv\Lib\site-packages\chromadb\utils\embedding_functions\openai_embedding_function.py:54: DeprecationWarning: Direct api_key configuration will not be persisted. Please use environment variables via api_key_env_var for persistent storage.
+    warnings.warn(
+
+.venv\Lib\site-packages\chromadb\api\collection_configuration.py:327
+  C:\Users\NW\Desktop\Portfolio\Whatsapp_agent\.venv\Lib\site-packages\chromadb\api\collection_configuration.py:327: DeprecationWarning: legacy embedding function config: The CHROMA_OPENAI_API_KEY environment variable is not set.
+    return json.dumps(create_collection_configuration_to_json(config, metadata))
+
+tests\test_rag.py:63
+  C:\Users\NW\Desktop\Portfolio\Whatsapp_agent\tests\test_rag.py:63: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+tests\test_rag.py:130
+  C:\Users\NW\Desktop\Portfolio\Whatsapp_agent\tests\test_rag.py:130: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+tests\test_rag.py:158
+  C:\Users\NW\Desktop\Portfolio\Whatsapp_agent\tests\test_rag.py:158: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.asyncio
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_rag.py::test_query_rag_success - Failed: async def function...
+FAILED tests/test_rag.py::test_query_rag_empty_content - Failed: async def fu...
+FAILED tests/test_rag.py::test_query_rag_exception - Failed: async def functi...
+=================== 3 failed, 2 passed, 5 warnings in 2.72s ===================
