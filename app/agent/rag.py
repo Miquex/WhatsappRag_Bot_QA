@@ -63,10 +63,10 @@ class RagAgent:
                     phone_number=user_phone, role='assistant', content=result_content
                 )
                 return result_content
-            return 'Lo siento, ocurrió un error inesperado al procesar tu mensaje.'
+            return 'Sorry, an unexpected error occurred while processing your message.'
         except Exception as e:
             logger.error(f'Error querying RAG: {e}')
-            return 'Lo siento, estoy teniendo dificultades técnicas en este momento.'
+            return 'Sorry, I'm having technical difficulties right now.'
 
 
 rag_agent: RagAgent = RagAgent()
