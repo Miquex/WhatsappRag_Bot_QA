@@ -36,6 +36,7 @@ class Settings(BaseSettings):
 
     RAG_MD_PATH: str = str(
         pathlib.Path(__file__).resolve().parent.parent / 'data/knowledge/info.md'
+
     )
     CHROMA_DB_DIR: str = str(
         pathlib.Path(__file__).resolve().parent.parent / 'data/chromadb'

@@ -4,7 +4,7 @@ from loguru import logger
 
 
 # Define the path for the log directory
-path_log_dir: Path = Path(__file__).resolve().parent.parent.parent / 'data' / 'logs'
+path_log_dir: Path = Path(__file__).resolve().parent.parent / 'data' / 'logs'
 path_log_dir.mkdir(parents=True, exist_ok=True)
 
 
