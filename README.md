@@ -1,5 +1,17 @@
 # Whasapp_Bot_QA
 This is a bot that can help you to answer automatically answer about your business or personal information.
+##Index
+* [Prerequisites](#prerequisites)
+* [Technologies Used](#technologies-used)
+* [About tools used](#about-tools-used)
+  * [Loguru](#why-use-loguru)
+  * [Uv](#why-use-cachetools-instead-redis)
+  * [Cachetools](#why-use-cachetools-instead-redis)
+  * [Vectorized information](#why-should-we-use-vectorized-information-instead-of-a-single-markdown-or-text-file)
+  * [Pydantic](#why-use-pydantic)
+* [How to run in local](#how-to-run-in-local)
+* [Environment Configuration](#environment-configuration)
+* [Project Structure](#-project-structure)
 ## Prerequisites
 -   Uv
 -   Python 3.13 or higher.
