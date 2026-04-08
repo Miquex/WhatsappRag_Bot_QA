@@ -47,7 +47,15 @@ class RagAgent:
         try:
             retrieved_context = vector_store.semantic_search(query, top_k=3)
             chat_history = memory_manager.get_history(user_phone)
-            system_prompt = f'\n            Eres un asistente virtual de atención al cliente.\n            A continuación, se te proporcionará información relevante del negocio ("Contexto").\n            Tu objetivo es responder a la pregunta del usuario utilizando ÚNICAMENTE esta información.\n            Si el usuario hace referencia a algo que dijo antes, usa el historial de la conversación, \n            pero siempre responde enfocado en el Contexto.\n            Si la información en el "Contexto" no es suficiente para responder la pregunta, \n            di amablemente que no lo sabes y pregunta si desean hablar con un agente humano.\n            \n            Contexto:\n            {retrieved_context}\n            '
+            system_prompt = f'''You are a virtual customer service assistant.            
+            You will then be provided with relevant business information ("Context").
+            Your goal is to answer the user's question using ONLY this information.
+            If the user refers to something they said before, use the conversation history,
+            but always respond focused on the Context.
+            If the information in the "Context" is not sufficient to answer the question,
+            Politely say you don't know and ask if you want to speak to a human agent.
+            Context:{retrieved_context}'''
+            
             messages: List[Dict[str, str]] = [{'role': 'system', 'content': system_prompt}]
             messages.extend(chat_history)
             messages.append({'role': 'user', 'content': query})
@@ -63,10 +71,10 @@ class RagAgent:
                     phone_number=user_phone, role='assistant', content=result_content
                 )
                 return result_content
-            return 'Lo siento, ocurrió un error inesperado al procesar tu mensaje.'
+            return 'Sorry, an unexpected error occurred while processing your message.'
         except Exception as e:
             logger.error(f'Error querying RAG: {e}')
-            return 'Lo siento, estoy teniendo dificultades técnicas en este momento.'
+            return "Sorry, I'm having technical difficulties right now."
 
 
 rag_agent: RagAgent = RagAgent()
