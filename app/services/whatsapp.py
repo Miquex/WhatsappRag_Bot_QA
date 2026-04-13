@@ -1,7 +1,13 @@
 from typing import Any, Dict, Optional
+import re
 import httpx
 from app.core.config import settings
 from loguru import logger
+
+URL_PATTERN = re.compile(
+    r'https?://[^\s<>\"\')\]]+',
+    re.IGNORECASE,
+)
 
 
 class WhatsappService:
@@ -26,6 +32,23 @@ class WhatsappService:
         self.headers = {'Authorization': f'Bearer {settings.WHATSAPP_TOKEN}'}
         self.client = httpx.AsyncClient(headers=self.headers)
 
+    def _sanitize_output(self, message: str) -> str:
+        """Removes URLs from the AI response to prevent phishing links.
+
+        If the LLM is tricked into generating a malicious URL, this method
+        strips it before the message reaches the user.
+
+        Args:
+            message (str): The raw AI-generated response.
+
+        Returns:
+            str: The sanitized message with URLs replaced by a safe notice.
+        """
+        sanitized = URL_PATTERN.sub('[link removed for security]', message)
+        if sanitized != message:
+            logger.warning('Stripped URL(s) from AI response before sending')
+        return sanitized
+
     async def send_whatsapp_message(self, to: str, message: str) -> Dict[str, str]:
         """Sends a text message to a WhatsApp user.
 
@@ -37,6 +60,7 @@ class WhatsappService:
             Dict[str, str]: A dictionary containing the delivery status ('ok' or 'error').
         """
         try:
+            message = self._sanitize_output(message)
             payload: Dict[str, Any] = {
                 'messaging_product': 'whatsapp',
                 'to': to,
@@ -45,7 +69,7 @@ class WhatsappService:
             }
             response = await self.client.post(self.base_url, json=payload)
             response.raise_for_status()
-            logger.info(f'Message sent to {to}')
+            logger.info(f'Message sent to the user')
             return {'status': 'ok'}
         except httpx.HTTPStatusError as e:
             logger.error(f'WhatsApp API HTTP Error: {e.response.text}')
@@ -56,3 +80,4 @@ class WhatsappService:
 
 
 whatsapp_service: WhatsappService = WhatsappService()
+

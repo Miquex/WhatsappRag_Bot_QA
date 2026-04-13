@@ -5,12 +5,16 @@ and includes the necessary API routers.
 """
 from app.core.logging import setup_logger
 from fastapi import FastAPI
-from app.api.webhook import router
+from app.api.webhook import router, limiter
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
 import uvicorn
 
 setup_logger()
 
 app = FastAPI(title='My whatsApp Agent', description='AI agent to Whatsapp', version='0.0.1')
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 app.include_router(router)
 
 

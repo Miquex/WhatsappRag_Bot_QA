@@ -33,6 +33,8 @@ class Settings(BaseSettings):
     WHATSAPP_VERIFY_TOKEN: Optional[str] = 'WHATSAPP_VERIFY_TOKEN'
     OPENAI_API_KEY: Optional[str] = None
     GEMINI_API_KEY: Optional[str] = None
+    META_APP_SECRET: Optional[str] = None
+    MAX_USER_INPUT_LENGTH: int = 500
 
     RAG_MD_PATH: str = str(
         pathlib.Path(__file__).resolve().parent.parent / 'data/knowledge/info.md'
